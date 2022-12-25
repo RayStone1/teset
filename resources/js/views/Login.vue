@@ -1,7 +1,7 @@
 <template>
     <v-main>
-        <v-container fluid class="fill-height bg">
-            <v-row align="center" justify="center">
+        <v-container fluid fill-height >
+            <v-row align="center" justify="center" style="height:100vh">
                 <v-col cols="12" sm="8" md="6">
                     <v-card elevation="3" class="mx-auto py-12" max-width="500px">
                         <v-form>
@@ -29,7 +29,17 @@
                                     outlined
                                     clearable
                                 ></v-text-field>
-
+                                <div v-if="errors" class="errors">
+                                    <v-alert
+                                        dense
+                                        outlined
+                                        type="error"
+                                        v-for="(val,name) in errors"
+                                        :key="name"
+                                    >
+                                        {{ val[0] }}
+                                    </v-alert>
+                                </div>
                             </v-card-text>
                             <v-card-actions class="px-4">
                                 <v-row>
@@ -54,6 +64,8 @@
 </template>
 
 <script>
+import api from "../api";
+
 export default {
     name: "Login",
     data :()=>({
@@ -67,10 +79,21 @@ export default {
         rules: {
             required: value => !!value || '',
         },
+        errors:null,
     }),
     methods:{
         login(){
-            console.log('asd')
+            axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.post('/login',this.user)
+                    .then(res=>{
+                        localStorage.setItem('X-XSRF-TOKEN',res.config.headers['X-XSRF-TOKEN']);
+                        this.$router.push({name:"index"})
+                    })
+                    .catch(err=>{
+                        this.errors=err.response.data.errors
+                    })
+            });
+
         }
     }
 }

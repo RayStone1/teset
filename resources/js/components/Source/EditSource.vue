@@ -145,7 +145,10 @@ export default {
             munrib.put(`/source/${this.item.id}`,this.source)
                 .then(res=>{
                     this.getFilteredSource()
-
+                    this.getFilteredMunOne()
+                    this.getFilteredMunTwo()
+                    this.getFilteredName()
+                    this.getFilteredSource()
                     this.closeDialog()
                 })
                 .catch(err=>{

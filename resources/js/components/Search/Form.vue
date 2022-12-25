@@ -123,7 +123,6 @@ export default {
             }
         },
         async findProvince(){
-
             await this.getProvinceList()
             this.ActiveType("province")
         },
@@ -160,6 +159,10 @@ export default {
             "filteredMunOne",
             "filteredMunTwo",
             "filteredName",
+            "disableProvince",
+            "disableMunOne",
+            "disableMunTwo",
+            "disableName",
         ]),
         province:{
             get() { return this.$store.getters.filter.province; },

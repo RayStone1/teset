@@ -56,10 +56,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "VHeader",
@@ -69,18 +65,20 @@ __webpack_require__.r(__webpack_exports__);
         name: 'Главная',
         route: '/',
         icon: "mdi-home"
-      }, {
-        name: 'Источник',
-        route: '/source/1',
-        icon: "mdi-home"
-      }, {
-        name: 'Логин',
-        route: '/login',
-        icon: "mdi-home"
       }],
       drawer: false,
       group: ''
     };
+  },
+  computed: {
+    page: function page() {
+      return this.$route.name;
+    }
+  },
+  components: {
+    LogOut: function LogOut() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_LogOut_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/LogOut */ "./resources/js/components/LogOut.vue"));
+    }
   }
 });
 
@@ -170,88 +168,94 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-card",
-    { attrs: { tile: "" } },
-    [
-      _c(
-        "v-app-bar",
-        { attrs: { app: "", color: "white" } },
-        [
-          _c("v-app-bar-nav-icon", {
-            on: {
-              click: function ($event) {
-                _vm.drawer = !_vm.drawer
-              },
-            },
-          }),
-          _vm._v(" "),
-          _c("v-toolbar-title", [_c("h4", [_vm._v("Munrib")])]),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-navigation-drawer",
-        {
-          attrs: { app: "" },
-          model: {
-            value: _vm.drawer,
-            callback: function ($$v) {
-              _vm.drawer = $$v
-            },
-            expression: "drawer",
-          },
-        },
+  return _vm.page !== "login"
+    ? _c(
+        "v-card",
+        { attrs: { tile: "" } },
         [
           _c(
-            "v-sheet",
-            { staticClass: "pa-4", attrs: { color: "#0055A3", dark: "" } },
+            "v-app-bar",
+            { attrs: { app: "", color: "white" } },
             [
-              _c("v-avatar", {
-                staticClass: "mb-4",
-                attrs: { color: "grey darken-1", size: "64" },
+              _c("v-app-bar-nav-icon", {
+                on: {
+                  click: function ($event) {
+                    _vm.drawer = !_vm.drawer
+                  },
+                },
               }),
               _vm._v(" "),
-              _c("div", [_vm._v("Руслан Чупанов")]),
+              _c("v-toolbar-title", [_c("h4", [_vm._v("Munrib")])]),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("log-out"),
             ],
             1
           ),
           _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
           _c(
-            "v-list",
-            { attrs: { nav: "", dense: "" } },
+            "v-navigation-drawer",
+            {
+              attrs: { app: "" },
+              model: {
+                value: _vm.drawer,
+                callback: function ($$v) {
+                  _vm.drawer = $$v
+                },
+                expression: "drawer",
+              },
+            },
             [
               _c(
-                "v-list-item-group",
-                {
-                  attrs: { "active-class": "base--text text--accent-4" },
-                  model: {
-                    value: _vm.group,
-                    callback: function ($$v) {
-                      _vm.group = $$v
+                "v-sheet",
+                { staticClass: "pa-4", attrs: { color: "white", dark: "" } },
+                [
+                  _c("v-img", {
+                    staticClass: "mx-auto",
+                    attrs: { src: "image/logo.png", width: "100%" },
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-list",
+                { attrs: { nav: "", dense: "" } },
+                [
+                  _c(
+                    "v-list-item-group",
+                    {
+                      attrs: { "active-class": "base--text text--accent-4" },
+                      model: {
+                        value: _vm.group,
+                        callback: function ($$v) {
+                          _vm.group = $$v
+                        },
+                        expression: "group",
+                      },
                     },
-                    expression: "group",
-                  },
-                },
-                _vm._l(_vm.links, function (link) {
-                  return _c(
-                    "v-list-item",
-                    { key: link.name, attrs: { to: link.route } },
-                    [
-                      _c(
-                        "v-list-item-icon",
-                        [_c("v-icon", [_vm._v(_vm._s(link.icon))])],
+                    _vm._l(_vm.links, function (link) {
+                      return _c(
+                        "v-list-item",
+                        { key: link.name, attrs: { to: link.route } },
+                        [
+                          _c(
+                            "v-list-item-icon",
+                            [_c("v-icon", [_vm._v(_vm._s(link.icon))])],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-list-item-title", [_vm._v(_vm._s(link.name))]),
+                        ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c("v-list-item-title", [_vm._v(_vm._s(link.name))]),
-                    ],
+                      )
+                    }),
                     1
-                  )
-                }),
+                  ),
+                ],
                 1
               ),
             ],
@@ -259,10 +263,8 @@ var render = function () {
           ),
         ],
         1
-      ),
-    ],
-    1
-  )
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

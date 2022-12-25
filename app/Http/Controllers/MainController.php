@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
@@ -10,9 +11,8 @@ class MainController extends Controller
     {
         return view('index');
     }
-
-    public function login()
+    public function getUser()
     {
-        return view('home');
+        return Auth::user();
     }
 }

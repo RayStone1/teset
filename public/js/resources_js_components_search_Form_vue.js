@@ -241,7 +241,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     }
   }),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(["activeType", "province_list", "filteredMunOne", "filteredMunTwo", "filteredName"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(["activeType", "province_list", "filteredMunOne", "filteredMunTwo", "filteredName", "disableProvince", "disableMunOne", "disableMunTwo", "disableName"])), {}, {
     province: {
       get: function get() {
         return this.$store.getters.filter.province;

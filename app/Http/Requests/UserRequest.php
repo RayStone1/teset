@@ -29,4 +29,19 @@ class UserRequest extends FormRequest
             'password' => 'required|string',
         ];
     }
+    public function attributes()
+    {
+        return [
+            'name'=>'Имя',
+            'login'=>'Логин',
+            'password'=>'Пароль',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'unique' => 'Такой субъект уже существует',
+            'required'=>':attribute обязательное поле'
+        ];
+    }
 }

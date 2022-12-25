@@ -1,25 +1,21 @@
 <template>
-    <v-card tile>
+    <v-card tile v-if="page!=='login'">
         <v-app-bar app color="white">
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title><h4>Munrib</h4></v-toolbar-title>
+            <v-spacer/>
+            <log-out/>
         </v-app-bar>
         <v-navigation-drawer
             v-model="drawer"
             app
         >
             <v-sheet
-                color="#0055A3"
+                color="white"
                 class="pa-4"
                 dark
             >
-                <v-avatar
-                    class="mb-4"
-                    color="grey darken-1"
-                    size="64"
-                ></v-avatar>
-
-                <div>Руслан Чупанов</div>
+                <v-img src="image/logo.png" class="mx-auto" width="100%"/>
             </v-sheet>
 
             <v-divider></v-divider>
@@ -53,12 +49,18 @@ export default {
     data:()=>({
         links: [
             {name:'Главная',route:'/',icon:"mdi-home"},
-            {name:'Источник',route:'/source/1',icon:"mdi-home"},
-            {name:'Логин',route:'/login',icon:"mdi-home"},
         ],
         drawer: false,
         group:''
-    })
+    }),
+    computed:{
+        page(){
+            return this.$route.name
+        }
+    },
+    components:{
+        LogOut:()=>import('../components/LogOut')
+    }
 }
 </script>
 

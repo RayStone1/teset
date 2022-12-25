@@ -22,7 +22,7 @@
                         v-model="dialogCreateSub"
                     />
                     <v-btn
-                        v-if="!isProvinceOrSource"
+                        v-if="!isProvinceOrSource && activeType"
                         class="mt-7"
                         outlined
                         @click="dialogCreateSub=!dialogCreateSub"
@@ -61,7 +61,7 @@ export default {
         ...mapGetters(['province','mun_one',"mun_two","name","source","activeType"]),
         isProvinceOrSource(){
             return this.activeType=='province' || this.activeType=='source'
-        }
+        },
     },
     methods:{
         ...mapMutations(["setSource"]),

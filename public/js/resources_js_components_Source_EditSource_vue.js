@@ -158,6 +158,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
       _api__WEBPACK_IMPORTED_MODULE_0__["default"].put("/source/".concat(this.item.id), this.source).then(function (res) {
         _this.getFilteredSource();
+        _this.getFilteredMunOne();
+        _this.getFilteredMunTwo();
+        _this.getFilteredName();
+        _this.getFilteredSource();
         _this.closeDialog();
       })["catch"](function (err) {
         _this.errors = err.response.data.errors;
